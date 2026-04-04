@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สรุปไฟฟ้า - Neobrutalism Style</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=K2D:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <script>
+      window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* --- 💥 NEOBRUTALISM THEME CONFIG 💥 --- */
+        :root {
+            --bg-color: #f0f0f0; /* พื้นหลังเทาอ่อนดิบๆ */
+            --sheet-bg: #ffffff;
+            --card-bg-1: #ffffff;
+            --card-bg-2: #a8edea; /* เขียวมินท์ดิบ */
+            --card-bg-highlight: #ffeaa7; /* เหลืองจัดจ้าน */
+            --text-main: #000000;
+            --text-sub: #333333;
+            
+            /* สไตล์หลัก: ขอบดำหนา + เงาแข็ง */
+            --border-thick: 3px solid #000000;
+            --border-thin: 2px solid #000000;
+            --shadow-hard: 8px 8px 0px #000000;
+            --shadow-small: 4px 4px 0px #000000;
+        }
+
+        body {
+            font-family: 'K2D', sans-serif;
+            margin: 0;
+            padding: 30px 15px;
+            color: var(--text-main);
+            background-color: var(--bg-color);
+            min-height: 100vh;
+        }
+
+        /* --- Main Container (แผ่นสรุป) --- */
+        .study-sheet {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: var(--sheet-bg);
+            /* Neobrutalism Style */
+            border: var(--border-thick);
+            border-radius: 15px;
+            box-shadow: 12px 12px 0px #000000;
+        }
+
+        /* Header section */
+        .sheet-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: var(--border-thick);
+        }
+        .sheet-header h2 {
+            margin: 0 0 15px 0;
+            font-size: 2.8em;
+            font-weight: 900; /* หนาสุดๆ */
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            -webkit-text-stroke: 1px #000; /* เพิ่มขอบตัวอักษร */
+        }
+        .sheet-header p {
+            color: var(--text-sub);
+            font-size: 1.2em;
+            font-weight: 700;
+            background-color: var(--card-bg-highlight);
+            display: inline-block;
+            padding: 8px 25px;
+            border: var(--border-thin);
+            border-radius: 10px;
+            box-shadow: var(--shadow-small);
+        }
+
+        /* Content Grid */
+        .sheet-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        /* --- Neobrutalism Cards --- */
+        .unit-card {
+            background-color: var(--card-bg-1);
+            border: var(--border-thick);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: var(--shadow-hard);
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+            display: flex;
+            flex-direction: column;
+            cursor: default;
+        }
+        /* เอฟเฟกต์ตอน Hover ให้ดูมีมิติแบบดิบๆ */
+        .unit-card:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 11px 11px 0px #000000;
+        }
+
+        /* Icon styling */
+        .card-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-align: center;
+            background: #fff;
+            border: var(--border-thin);
+            display: inline-block;
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            border-radius: 50%;
+            margin-left: auto; margin-right: auto;
+            box-shadow: var(--shadow-small);
+        }
+
+        .unit-card h3 {
+            text-align: center;
+            color: var(--text-main);
+            margin: 0 0 20px 0;
+            font-size: 1.6em;
+            font-weight: 900;
+            background: rgba(0,0,0,0.05);
+            padding: 10px;
+            border: var(--border-thin);
+            border-radius: 8px;
+        }
+
+        /* Highlight Card (เหลืองจัด) */
+        .highlight-card {
+            background-color: var(--card-bg-highlight);
+        }
+        .highlight-card h3 { background: #fff; color: #d35400; }
+        
+        /* สลับสีการ์ดให้น่าสนใจ */
+        .unit-card:nth-child(even):not(.highlight-card) {
+            background-color: var(--card-bg-2);
+        }
+
+        /* Typography & List */
+        .summary-text {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: var(--text-main);
+        }
+        .summary-text strong { font-weight: 900; }
+
+        .unit-card ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 15px 0;
+        }
+        .unit-card ul li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        /* Custom Bullet Points (สี่เหลี่ยมดำดิบๆ) */
+        .unit-card ul li::before {
+            content: "";
+            width: 12px;
+            height: 12px;
+            background-color: #000;
+            position: absolute;
+            left: 0;
+            top: 8px;
+            border: 2px solid #fff;
+            box-shadow: 2px 2px 0 #000;
+        }
+
+        /* 🖼️ Image Styling (ขอบหนา+เงาแข็ง) */
+        .study-sheet img {
+            display: block;
+            max-width: 95%;
+            height: auto;
+            margin: 20px auto;
+            border: var(--border-thick);
+            border-radius: 10px;
+            box-shadow: var(--shadow-small);
+            background-color: #fff;
+            padding: 5px;
+        }
+
+        /* Formula Box within text */
+        .var-desc {
+            font-size: 1em;
+            color: var(--text-sub);
+            margin-top: 10px;
+            padding: 15px;
+            background: #fff;
+            border: var(--border-thin);
+            border-radius: 8px;
+            box-shadow: inset 3px 3px 0 rgba(0,0,0,0.1); /* เงาบุ๋มลงไป */
+        }
+
+        /* Formula เด่นๆ */
+        .main-formula {
+            background-color: #a8edea;
+            border: var(--border-thick);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 15px 0;
+            box-shadow: var(--shadow-small);
+        }
+        .main-formula h3 {
+            margin: 0;
+            font-size: 2.2em;
+            background: none;
+            border: none;
+            -webkit-text-stroke: 1.5px #000;
+            color: #fff;
+        }
+
+        /* ปรับแต่ง MathJax ให้หนาเข้าตีม */
+        .mjx-chtml {
+            font-size: 1.1em !important;
+            font-weight: 700 !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .study-sheet { padding: 20px; border-radius: 10px; }
+            .sheet-header h2 { font-size: 2em; }
+            .sheet-content { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="study-sheet">
+    <div class="sheet-header">
+        <h2>🧮 กฎการหารลงตัว (Divisibility)</h2>
+        <p>เทคนิคสแกนตัวเลขแบบไวปานวอก ไม่ต้องตั้งหารยาว!</p>
+    </div>
+    
+    <div class="sheet-content">    
+              <div class="unit-card">
+            <div class="card-icon">👁️</div>
+            <h3>1. แก๊งส่องเลขท้าย (ดูปุ๊บรู้ปั๊บ)</h3>
+            <div class="summary-text">
+                <strong>กฎเหล็ก:</strong> ไม่ต้องสนใจเลขข้างหน้ายาวๆ สนใจแค่ "หาง" ของมันก็พอ!
+                <ul>
+                    <li><strong>แม่ 2:</strong> ดูแค่หลักหน่วย ต้องเป็น <strong>เลขคู่</strong> (0, 2, 4, 6, 8)</li>
+                    <li><strong>แม่ 5:</strong> ดูแค่หลักหน่วย ต้องลงท้ายด้วย <strong>0 หรือ 5</strong></li>
+                    <li><strong>แม่ 10:</strong> ง่ายสุดๆ หลักหน่วยต้องเป็น <strong>0 เท่านั้น</strong></li>
+                    <li style="margin-top: 15px;"><strong>แม่ 4:</strong> ดูเลข <strong>2 ตัวท้าย</strong> ว่าหาร 4 ลงตัวไหม<br>
+                        <em>เช่น 5,3<strong>16</strong> (มองแค่ 16 $\rightarrow$ 4 หารลงตัว!)</em>
+                    </li>
+                    <li><strong>แม่ 8:</strong> ดูเลข <strong>3 ตัวท้าย</strong> ว่าหาร 8 ลงตัวไหม<br>
+                        <em>เช่น 12,<strong>048</strong> (มองแค่ 048 $\rightarrow$ 8 หารลงตัว!)</em>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="unit-card highlight-card">
+            <div class="card-icon">➕</div>
+            <h3>2. แก๊งผลบวก (จับมัดรวมกัน)</h3>
+            <div class="summary-text">
+                <strong>กฎเหล็ก:</strong> จับตัวเลขทุกหลักมา "บวกกัน" ให้หมด แล้วดูผลลัพธ์!
+                <ul>
+                    <li><strong>แม่ 3:</strong> ผลบวกทุกหลัก ต้องหารด้วย 3 ลงตัว<br>
+                        <em>เช่น 123 $\rightarrow$ 1 + 2 + 3 = 6 (3 หารลงตัว รอด!)</em>
+                    </li>
+                    <li><strong>แม่ 9:</strong> ผลบวกทุกหลัก ต้องหารด้วย 9 ลงตัว<br>
+                        <em>เช่น 729 $\rightarrow$ 7 + 2 + 9 = 18 (9 หารลงตัว รอด!)</em>
+                    </li>
+                </ul>
+                <div style="font-size: 0.9em; color: #c0392b; margin-top: 15px; font-weight: 700; background: #fff; padding: 10px; border: 2px solid #c0392b; border-radius: 8px;">
+                    ⚠️ <strong>จุดตายที่คนโดนหลอกบ่อย:</strong> กฎการเอาเลขมาบวกกัน ใช้ได้แค่กับ <strong>แม่ 3 และ แม่ 9</strong> เท่านั้นนะ! ห้ามเอาไปใช้กับแม่เลขอื่นเด็ดขาด!
+                </div>
+            </div>
+        </div>
+
+        <div class="unit-card">
+            <div class="card-icon">🤝</div>
+            <h3>3. แก๊งร่างแยก (เช็ก 2 ด่าน)</h3>
+            <div class="summary-text">
+                <strong>กฎเหล็ก:</strong> สำหรับแม่เลขที่เกิดจากการคูณกัน ต้องแยกเช็ก 2 เงื่อนไข (ต้องผ่านทั้งคู่ถึงจะถือว่ารอด!)
+                <ul>
+                    <li><strong>แม่ 6 (เกิดจาก 2 $\times$ 3):</strong><br>
+                        ด่านที่ 1: ต้องเป็นเลขคู่ (กฎแม่ 2)<br>
+                        ด่านที่ 2: ผลบวกทุกหลักต้องหาร 3 ลงตัว (กฎแม่ 3)<br>
+                        <em>เช่น 114 $\rightarrow$ เป็นเลขคู่ และ 1+1+4 = 6 (ผ่านทั้งคู่!)</em>
+                    </li>
+                    <li style="margin-top: 15px;"><strong>แม่ 12 (เกิดจาก 3 $\times$ 4):</strong><br>
+                        ด่านที่ 1: ผลบวกทุกหลักหาร 3 ลงตัว (กฎแม่ 3)<br>
+                        ด่านที่ 2: เลข 2 ตัวท้ายต้องหาร 4 ลงตัว (กฎแม่ 4)<br>
+                        <em>เช่น 324 $\rightarrow$ 3+2+4=9 (ผ่าน) และ 24 หาร 4 ลงตัว (ผ่าน!)</em>
+                    </li>
+                </ul>
+            </div>
+        </div>
+<div class="unit-card minus-card">
+            <div class="card-icon">➖</div>
+            <h3>4. แก๊งลงท้าย "1" (ทีมลบ)</h3>
+            <div class="summary-text">
+                <strong>กฎเหล็ก: "ปัดลง $\rightarrow$ เอาตัวหน้า $\rightarrow$ คูณ $\rightarrow$ แล้วนำไปลบ"</strong><br>
+                ใช้กับจำนวนเฉพาะที่ลงท้ายด้วย 1 (เช่น 31, 41)
+                <ul>
+                    <li><strong>แม่ 31:</strong> ปัดลงเป็น 30 (ได้รหัสคือเลข <strong>3</strong>)<br>
+                        <em>วิธีทำ:</em> ตัดหลักหน่วย นำไป <strong>$\times$ 3</strong> แล้วนำมา <strong>"ลบ"</strong> ออกจากตัวเลขที่เหลือด้านหน้า
+                    </li>
+                    <li style="margin-top: 10px;"><strong>แม่ 41:</strong> ปัดลงเป็น 40 (ได้รหัสคือเลข <strong>4</strong>)<br>
+                        <em>วิธีทำ:</em> ตัดหลักหน่วย นำไป <strong>$\times$ 4</strong> แล้วนำมา <strong>"ลบ"</strong> ออกจากตัวหน้าที่เหลือ
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="unit-card plus-card">
+            <div class="card-icon">➕</div>
+            <h3>5. แก๊งลงท้าย "9" (ทีมบวก)</h3>
+            <div class="summary-text">
+                <strong>กฎเหล็ก: "ปัดขึ้น $\rightarrow$ เอาตัวหน้า $\rightarrow$ คูณ $\rightarrow$ แล้วนำไปบวก"</strong><br>
+                ใช้กับจำนวนเฉพาะที่ลงท้ายด้วย 9 (เช่น 19, 29)
+                <ul>
+                    <li><strong>แม่ 19:</strong> ปัดขึ้นเป็น 20 (ได้รหัสคือเลข <strong>2</strong>)<br>
+                        <em>วิธีทำ:</em> ตัดหลักหน่วย นำไป <strong>$\times$ 2</strong> แล้วนำมา <strong>"บวก"</strong> เพิ่มเข้ากับตัวหน้าที่เหลือ
+                    </li>
+                    <li style="margin-top: 10px;"><strong>แม่ 29:</strong> ปัดขึ้นเป็น 30 (ได้รหัสคือเลข <strong>3</strong>)<br>
+                        <em>วิธีทำ:</em> ตัดหลักหน่วย นำไป <strong>$\times$ 3</strong> แล้วนำมา <strong>"บวก"</strong> เพิ่มเข้ากับตัวหน้าที่เหลือ
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="unit-card">
+            <div class="card-icon">⚡</div>
+            <h3>6. แก๊งแปลงร่าง (หาคู่หู)</h3>
+            <div class="summary-text">
+                แล้วแม่ <strong>7, 13, 17, 23</strong> ล่ะ? พวกนี้ไม่ได้ลงท้าย 1 หรือ 9 ตั้งแต่แรก! <br>
+                <strong>ทริค:</strong> จับไป <strong>"คูณ 3"</strong> ก่อน เพื่อให้กลายเป็น 1 หรือ 9 แล้วค่อยส่งเข้าทีม!
+                <ul>
+                    <li><strong>แม่ 7:</strong> 7 $\times$ 3 = 2<strong>1</strong> (ลงท้าย 1)<br>
+                        $\rightarrow$ เข้า <strong>ทีมลบ</strong> (ปัดเป็น 20 รหัสคือ <strong>$\times$ 2 ลบ</strong>)
+                    </li>
+                    <li><strong>แม่ 13:</strong> 13 $\times$ 3 = 3<strong>9</strong> (ลงท้าย 9)<br>
+                        $\rightarrow$ เข้า <strong>ทีมบวก</strong> (ปัดเป็น 40 รหัสคือ <strong>$\times$ 4 บวก</strong>)
+                    </li>
+                    <li><strong>แม่ 17:</strong> 17 $\times$ 3 = 5<strong>1</strong> (ลงท้าย 1)<br>
+                        $\rightarrow$ เข้า <strong>ทีมลบ</strong> (ปัดเป็น 50 รหัสคือ <strong>$\times$ 5 ลบ</strong>)
+                    </li>
+                </ul>
+            </div>
+        </div>
+<div class="unit-card highlight-card full-width">
+            <div class="card-icon">🎯</div>
+            <h3>7. โพยรหัสลับ (เซฟไว้ท่องก่อนสอบ!)</h3>
+            <div class="summary-text" style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; text-align: center; border: var(--border-thick); background: #fff;">
+                    <thead>
+                        <tr style="background: #000; color: #fff;">
+                            <th style="padding: 12px; border: var(--border-thin);">จำนวนเฉพาะ</th>
+                            <th style="padding: 12px; border: var(--border-thin);">ร่าง 1 หรือ 9</th>
+                            <th style="padding: 12px; border: var(--border-thin);">เข้าทีม</th>
+                            <th style="padding: 12px; border: var(--border-thin);">🗝️ รหัสลับ (วิธีทำ)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 10px; border: var(--border-thin); font-weight: 900;">แม่ 7</td>
+                            <td style="padding: 10px; border: var(--border-thin);">21</td>
+                            <td style="padding: 10px; border: var(--border-thin); background: var(--card-bg-3);">➖ ทีมลบ</td>
+                            <td style="padding: 10px; border: var(--border-thin);"><strong>$\times$ 2 แล้วลบ</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: var(--border-thin); font-weight: 900;">แม่ 13</td>
+                            <td style="padding: 10px; border: var(--border-thin);">39</td>
+                            <td style="padding: 10px; border: var(--border-thin); background: var(--card-bg-2);">➕ ทีมบวก</td>
+                            <td style="padding: 10px; border: var(--border-thin);"><strong>$\times$ 4 แล้วบวก</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: var(--border-thin); font-weight: 900;">แม่ 17</td>
+                            <td style="padding: 10px; border: var(--border-thin);">51</td>
+                            <td style="padding: 10px; border: var(--border-thin); background: var(--card-bg-3);">➖ ทีมลบ</td>
+                            <td style="padding: 10px; border: var(--border-thin);"><strong>$\times$ 5 แล้วลบ</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: var(--border-thin); font-weight: 900;">แม่ 19</td>
+                            <td style="padding: 10px; border: var(--border-thin);">19 (ไม่ต้องแปลง)</td>
+                            <td style="padding: 10px; border: var(--border-thin); background: var(--card-bg-2);">➕ ทีมบวก</td>
+                            <td style="padding: 10px; border: var(--border-thin);"><strong>$\times$ 2 แล้วบวก</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: var(--border-thin); font-weight: 900;">แม่ 23</td>
+                            <td style="padding: 10px; border: var(--border-thin);">69</td>
+                            <td style="padding: 10px; border: var(--border-thin); background: var(--card-bg-2);">➕ ทีมบวก</td>
+                            <td style="padding: 10px; border: var(--border-thin);"><strong>$\times$ 7 แล้วบวก</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="text-align: center; margin-top: 15px; font-weight: 900; font-size: 1.2em;">
+                    "ปัดลงใช้ลบ ปัดขึ้นใช้บวก รหัสลับอยู่ในมือเธอแล้ว!"
+                </div>
+            </div>
+        </div>
+<div class="unit-card full-width" style="background-color: #2d3436; border-color: #00e676; color: #00e676; box-shadow: 8px 8px 0px #00e676;">
+            <div class="card-icon" style="background: #000; border-color: #00e676; color: #00e676;">🎬</div>
+            <h3 style="background: #000; border-color: #00e676; color: #00e676;">8. Showtime! (ทดสอบความขลังแบบจัดเต็ม)</h3>
+            <div class="summary-text">
+                สิบปากว่าไม่เท่าตาเห็น! มาลองแกะรอยเลขหลักพันกันดูทั้งแบบพื้นฐานและแบบรหัสลับขั้นสูง
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-top: 15px;">
+                    
+                    <div style="background: rgba(0,230,118,0.1); padding: 15px; border: 2px dashed #00e676; border-radius: 8px;">
+                        <strong style="color: #fff;">ภารกิจ 1: 3,128 หาร 8 ลงไหม?</strong><br>
+                        <span style="font-size: 0.85em; color: #aaa;">ทริค: แก๊งส่องเลขท้าย (ดู 3 ตัวจบ)</span>
+                        <ul style="color: #00e676; font-size: 0.9em; margin-top: 8px;">
+                            <li style="border: none; box-shadow: none;">มองแค่ 3 ตัวท้าย คือ <strong>128</strong></li>
+                            <li style="border: none; box-shadow: none;">$128 \div 8 = 16$ (ลงตัวพอดี)</li>
+                            <li style="border: none; box-shadow: none; color: #fff;"><strong>[สรุป] หารลงตัว ✅</strong></li>
+                        </ul>
+                    </div>
+
+                    <div style="background: rgba(0,230,118,0.1); padding: 15px; border: 2px dashed #00e676; border-radius: 8px;">
+                        <strong style="color: #fff;">ภารกิจ 2: 8,469 หาร 9 ลงไหม?</strong><br>
+                        <span style="font-size: 0.85em; color: #aaa;">ทริค: แก๊งผลบวก (จับมัดรวม)</span>
+                        <ul style="color: #00e676; font-size: 0.9em; margin-top: 8px;">
+                            <li style="border: none; box-shadow: none;">นำทุกหลักมาบวกกัน</li>
+                            <li style="border: none; box-shadow: none;">$8 + 4 + 6 + 9 = \mathbf{27}$</li>
+                            <li style="border: none; box-shadow: none;">27 หาร 9 ลงตัวแน่นอน (9 $\times$ 3)</li>
+                            <li style="border: none; box-shadow: none; color: #fff;"><strong>[สรุป] หารลงตัว ✅</strong></li>
+                        </ul>
+                    </div>
+
+                    <div style="background: rgba(0,230,118,0.1); padding: 15px; border: 2px dashed #00e676; border-radius: 8px;">
+                        <strong style="color: #fff;">ภารกิจ 3: 4,152 หาร 6 ลงไหม?</strong><br>
+                        <span style="font-size: 0.85em; color: #aaa;">ทริค: แก๊งร่างแยก (เช็ก 2 กับ 3)</span>
+                        <ul style="color: #00e676; font-size: 0.9em; margin-top: 8px;">
+                            <li style="border: none; box-shadow: none;"><strong>ด่าน 1:</strong> ลงท้าย 2 เป็นเลขคู่ (ผ่านแม่ 2)</li>
+                            <li style="border: none; box-shadow: none;"><strong>ด่าน 2:</strong> $4+1+5+2 = \mathbf{12}$ (ผ่านแม่ 3)</li>
+                            <li style="border: none; box-shadow: none; color: #fff;"><strong>[สรุป] ผ่านทั้งคู่ หารลงตัว ✅</strong></li>
+                        </ul>
+                    </div>
+
+                    <div style="background: rgba(0,230,118,0.1); padding: 15px; border: 2px dashed #00e676; border-radius: 8px;">
+                        <strong style="color: #fff;">ภารกิจ 4: 2,541 หาร 7 ลงไหม?</strong><br>
+                        <span style="font-size: 0.85em; color: #aaa;">ทริค: ทีมลบ (ตัด $\times 2$ ลบ)</span>
+                        <ul style="color: #00e676; font-size: 0.9em; margin-top: 8px;">
+                            <li style="border: none; box-shadow: none;">ตัด 1 คูน 2 ได้ 2 $\rightarrow$ $254 - 2 = \mathbf{252}$</li>
+                            <li style="border: none; box-shadow: none;">ทำซ้ำ: ตัด 2 คูน 2 ได้ 4 $\rightarrow$ $25 - 4 = \mathbf{21}$</li>
+                            <li style="border: none; box-shadow: none;">21 หาร 7 ลงตัว ($7 \times 3$)</li>
+                            <li style="border: none; box-shadow: none; color: #fff;"><strong>[สรุป] หารลงตัว ✅</strong></li>
+                        </ul>
+                    </div>
+
+                    <div style="background: rgba(0,230,118,0.1); padding: 15px; border: 2px dashed #00e676; border-radius: 8px;">
+                        <strong style="color: #fff;">ภารกิจ 5: 5,616 หาร 13 ลงไหม?</strong><br>
+                        <span style="font-size: 0.85em; color: #aaa;">ทริค: ทีมบวก (ตัด $\times 4$ บวก)</span>
+                        <ul style="color: #00e676; font-size: 0.9em; margin-top: 8px;">
+                            <li style="border: none; box-shadow: none;">ตัด 6 คูน 4 ได้ 24 $\rightarrow$ $561 + 24 = \mathbf{585}$</li>
+                            <li style="border: none; box-shadow: none;">ทำซ้ำ: ตัด 5 คูน 4 ได้ 20 $\rightarrow$ $58 + 20 = \mathbf{78}$</li>
+                            <li style="border: none; box-shadow: none;">78 หาร 13 ลงตัว ($13 \times 6 = 78$)</li>
+                            <li style="border: none; box-shadow: none; color: #fff;"><strong>[สรุป] หารลงตัว ✅</strong></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
