@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สรุปไฟฟ้า - Neobrutalism Style</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=K2D:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <script>
+      window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* --- 💥 NEOBRUTALISM THEME CONFIG 💥 --- */
+        :root {
+            --bg-color: #f0f0f0; /* พื้นหลังเทาอ่อนดิบๆ */
+            --sheet-bg: #ffffff;
+            --card-bg-1: #ffffff;
+            --card-bg-2: #a8edea; /* เขียวมินท์ดิบ */
+            --card-bg-highlight: #ffeaa7; /* เหลืองจัดจ้าน */
+            --text-main: #000000;
+            --text-sub: #333333;
+            
+            /* สไตล์หลัก: ขอบดำหนา + เงาแข็ง */
+            --border-thick: 3px solid #000000;
+            --border-thin: 2px solid #000000;
+            --shadow-hard: 8px 8px 0px #000000;
+            --shadow-small: 4px 4px 0px #000000;
+        }
+
+        body {
+            font-family: 'K2D', sans-serif;
+            margin: 0;
+            padding: 30px 15px;
+            color: var(--text-main);
+            background-color: var(--bg-color);
+            min-height: 100vh;
+        }
+
+        /* --- Main Container (แผ่นสรุป) --- */
+        .study-sheet {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: var(--sheet-bg);
+            /* Neobrutalism Style */
+            border: var(--border-thick);
+            border-radius: 15px;
+            box-shadow: 12px 12px 0px #000000;
+        }
+
+        /* Header section */
+        .sheet-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: var(--border-thick);
+        }
+        .sheet-header h2 {
+            margin: 0 0 15px 0;
+            font-size: 2.8em;
+            font-weight: 900; /* หนาสุดๆ */
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            -webkit-text-stroke: 1px #000; /* เพิ่มขอบตัวอักษร */
+        }
+        .sheet-header p {
+            color: var(--text-sub);
+            font-size: 1.2em;
+            font-weight: 700;
+            background-color: var(--card-bg-highlight);
+            display: inline-block;
+            padding: 8px 25px;
+            border: var(--border-thin);
+            border-radius: 10px;
+            box-shadow: var(--shadow-small);
+        }
+
+        /* Content Grid */
+        .sheet-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        /* --- Neobrutalism Cards --- */
+        .unit-card {
+            background-color: var(--card-bg-1);
+            border: var(--border-thick);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: var(--shadow-hard);
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+            display: flex;
+            flex-direction: column;
+            cursor: default;
+        }
+        /* เอฟเฟกต์ตอน Hover ให้ดูมีมิติแบบดิบๆ */
+        .unit-card:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 11px 11px 0px #000000;
+        }
+
+        /* Icon styling */
+        .card-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-align: center;
+            background: #fff;
+            border: var(--border-thin);
+            display: inline-block;
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            border-radius: 50%;
+            margin-left: auto; margin-right: auto;
+            box-shadow: var(--shadow-small);
+        }
+
+        .unit-card h3 {
+            text-align: center;
+            color: var(--text-main);
+            margin: 0 0 20px 0;
+            font-size: 1.6em;
+            font-weight: 900;
+            background: rgba(0,0,0,0.05);
+            padding: 10px;
+            border: var(--border-thin);
+            border-radius: 8px;
+        }
+
+        /* Highlight Card (เหลืองจัด) */
+        .highlight-card {
+            background-color: var(--card-bg-highlight);
+        }
+        .highlight-card h3 { background: #fff; color: #d35400; }
+        
+        /* สลับสีการ์ดให้น่าสนใจ */
+        .unit-card:nth-child(even):not(.highlight-card) {
+            background-color: var(--card-bg-2);
+        }
+
+        /* Typography & List */
+        .summary-text {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: var(--text-main);
+        }
+        .summary-text strong { font-weight: 900; }
+
+        .unit-card ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 15px 0;
+        }
+        .unit-card ul li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        /* Custom Bullet Points (สี่เหลี่ยมดำดิบๆ) */
+        .unit-card ul li::before {
+            content: "";
+            width: 12px;
+            height: 12px;
+            background-color: #000;
+            position: absolute;
+            left: 0;
+            top: 8px;
+            border: 2px solid #fff;
+            box-shadow: 2px 2px 0 #000;
+        }
+
+        /* 🖼️ Image Styling (ขอบหนา+เงาแข็ง) */
+        .study-sheet img {
+            display: block;
+            max-width: 95%;
+            height: auto;
+            margin: 20px auto;
+            border: var(--border-thick);
+            border-radius: 10px;
+            box-shadow: var(--shadow-small);
+            background-color: #fff;
+            padding: 5px;
+        }
+
+        /* Formula Box within text */
+        .var-desc {
+            font-size: 1em;
+            color: var(--text-sub);
+            margin-top: 10px;
+            padding: 15px;
+            background: #fff;
+            border: var(--border-thin);
+            border-radius: 8px;
+            box-shadow: inset 3px 3px 0 rgba(0,0,0,0.1); /* เงาบุ๋มลงไป */
+        }
+
+        /* Formula เด่นๆ */
+        .main-formula {
+            background-color: #a8edea;
+            border: var(--border-thick);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 15px 0;
+            box-shadow: var(--shadow-small);
+        }
+        .main-formula h3 {
+            margin: 0;
+            font-size: 2.2em;
+            background: none;
+            border: none;
+            -webkit-text-stroke: 1.5px #000;
+            color: #fff;
+        }
+
+        /* ปรับแต่ง MathJax ให้หนาเข้าตีม */
+        .mjx-chtml {
+            font-size: 1.1em !important;
+            font-weight: 700 !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .study-sheet { padding: 20px; border-radius: 10px; }
+            .sheet-header h2 { font-size: 2em; }
+            .sheet-content { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="study-sheet">
+    <div class="sheet-header">
+        <h2>🛠️ Operation PEMDAS: เจาะระบบเครื่องหมาย</h2>
+        <p>ลืมการท่องจำแบบนกแก้วนกขุนทอง! มาแฮกดู "เบื้องหลัง" กฎคณิตศาสตร์ และปิดจุดตายที่คน 90% ชอบพลาด!</p>
+    </div>
+    
+    <div class="sheet-content">
+        
+        <div class="unit-card highlight-card full-width">
+            <div class="card-icon">🪜</div>
+            <h3>1. กฎหมายสูงสุด: PEMDAS (ใครใหญ่ทำก่อน!)</h3>
+            <div class="summary-text">
+                ถ้าเจอโจทย์ยาวๆ ห้ามทำจากซ้ายไปขวาทันที! ต้องทำตาม <strong>"ลำดับยศ"</strong> ดังนี้:
+                <ol style="margin-top: 10px;">
+                    <li><strong>P - วงเล็บ (Parentheses):</strong> ยศใหญ่สุด! เจอวงเล็บต้องมุดเข้าไปเคลียร์ข้างในก่อน</li>
+                    <li><strong>E - ยกกำลัง/รูท (Exponents):</strong> ยศรองลงมา จัดการแปลงร่างเลขพวกนี้ให้เป็นเลขธรรมดา</li>
+                    <li><strong>MD - คูณและหาร:</strong> ยศเท่ากัน! <strong style="color: #c0392b;">(ถ้าเจอพร้อมกัน ให้ทำจาก ซ้าย ไป ขวา)</strong></li>
+                    <li><strong>AS - บวกและลบ:</strong> ยศเล็กสุด! <strong style="color: #c0392b;">(ถ้าเจอพร้อมกัน ให้ทำจาก ซ้าย ไป ขวา)</strong></li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="unit-card minus-card">
+            <div class="card-icon">📉</div>
+            <h3>2. แฮกความลับ: [+ คูณ - = ลบ]</h3>
+            <div class="summary-text">
+                ทำไมบวกคูณลบถึงติดลบ? ลองดู <strong>"แพทเทิร์น"</strong> นี้สิ:
+                <ul style="list-style: none; padding-left: 0; font-family: monospace; font-size: 1.1em;">
+                    <li>$3 \times 2 = 6$</li>
+                    <li>$3 \times 1 = 3$ <span style="color: #555; font-size: 0.8em;">(ลดลงทีละ 3)</span></li>
+                    <li>$3 \times 0 = 0$ <span style="color: #555; font-size: 0.8em;">(ลดลงอีก 3)</span></li>
+                    <li style="border-top: 2px dashed #000; padding-top: 5px;">$3 \times (-1) = \mathbf{-3}$ <span style="color: #d63031; font-size: 0.8em;">(ทะลุลงไปติดลบ!)</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="unit-card plus-card">
+            <div class="card-icon">🎢</div>
+            <h3>3. จุดหักมุม: [- คูณ - = บวก]</h3>
+            <div class="summary-text">
+                แล้วลบเจอลบทำไมเป็นบวก? ลองเอาเลขติดลบมาตั้งดู:
+                <ul style="list-style: none; padding-left: 0; font-family: monospace; font-size: 1.1em;">
+                    <li>$-3 \times 2 = -6$ <span style="color: #555; font-size: 0.8em;">(เป็นหนี้ 6 บาท)</span></li>
+                    <li>$-3 \times 1 = -3$ <span style="color: #00b894; font-size: 0.8em;">(เฮ้ย! ค่ามัน "เพิ่มขึ้น" ทีละ 3)</span></li>
+                    <li>$-3 \times 0 = 0$ <span style="color: #00b894; font-size: 0.8em;">(เพิ่มอีก 3 จนหนี้หมด)</span></li>
+                    <li style="border-top: 2px dashed #000; padding-top: 5px;">$-3 \times (-1) = \mathbf{+3}$ <span style="color: #00b894; font-size: 0.8em;">(ทะลุศูนย์กลายเป็นบวก!)</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="unit-card">
+            <div class="card-icon">🔀</div>
+            <h3>4. คาถาสลับที่ & ร่างแยก (แจกแจง)</h3>
+            <div class="summary-text">
+                <strong>คาถาสลับที่:</strong> ใช้ได้แค่กับ <strong>"บวก"</strong> และ <strong>"คูณ"</strong> เท่านั้น! (ลบกับหารห้ามสลับนะ ชีวิตเปลี่ยน!)<br>
+                <em>เช่น $3+5 = 5+3$ หรือ $2 \times 4 = 4 \times 2$</em>
+                <br><br>
+                <strong>คาถาแจกแจง:</strong> ตัวที่อยู่หน้าวงเล็บ ต้องบุกเข้าไปคูณ "แจก" ให้ทุกคนข้างใน! ไม่เชื่อลองดูบทพิสูจน์นี้:<br><br>
+                <div style="background: rgba(0,0,0,0.03); padding: 12px; border-radius: 8px; border: 2px dashed #636e72; font-size: 0.95em;">
+                    <strong>พิสูจน์โจทย์: $2(3 + 5)$</strong>
+                    <ul style="margin-top: 8px; margin-bottom: 0;">
+                        <li style="margin-bottom: 8px;">
+                            <strong>คิดแบบคนซื่อ (ทำในวงเล็บก่อน):</strong><br>
+                            $2 \times (8) = \mathbf{16}$
+                        </li>
+                        <li>
+                            <strong>ใช้คาถาแจกแจง (แจก 2 เข้าไปคูณทุกคน):</strong><br>
+                            $(2 \times 3) + (2 \times 5) \rightarrow 6 + 10 = \mathbf{16}$
+                        </li>
+                    </ul>
+                </div>
+                <div style="color: #d63031; font-weight: bold; margin-top: 10px; font-size: 0.9em;">
+                    ✨ ผลลัพธ์ได้ 16 เท่ากันเป๊ะ! <br>
+                    (ข้อควรระวัง: บุกเข้าไปแล้วต้องแจกให้ครบทุกคน ห้ามลำเอียงแจกแค่ตัวหน้าตัวเดียวนะ!)
+                </div>
+        </div>
+
+        <div class="unit-card highlight-card">
+            <div class="card-icon">💥</div>
+            <h3>5. กฎเครื่องหมายชนกัน</h3>
+            <div class="summary-text">
+                เมื่อเครื่องหมายมายืนติดกัน (หรือมีแค่วงเล็บกั้น) มันคือการ <strong>"คูณกัน"</strong> ให้ยุบเป็นตัวเดียวเลย:
+                <ul>
+                    <li>$+(+)$ $\rightarrow$ <strong>+</strong> <span style="color: #555;">(เพื่อนของเพื่อน คือเพื่อน)</span></li>
+                    <li>$-(-)$ $\rightarrow$ <strong>+</strong> <span style="color: #555;">(ศัตรูของศัตรู คือเพื่อน!)</span></li>
+                    <li>$+(-)$ หรือ $-(+)$ $\rightarrow$ <strong>-</strong> <span style="color: #555;">(มีลบโผล่มาป่วน ให้กลายเป็นลบ)</span></li>
+                </ul>
+                <em>เช่น $5 - (-3) \rightarrow$ ลบชนลบกลายเป็นบวก $\rightarrow 5 + 3 = 8$</em>
+            </div>
+        </div>
+
+        <div class="unit-card minus-card">
+            <div class="card-icon">🤝</div>
+            <h3>6. พวกเดียวกัน "รวมพลัง"</h3>
+            <div class="summary-text">
+                การบวกลบเลข ถ้า <strong>เครื่องหมายหน้าเลขเหมือนกัน</strong> ให้นำเลขมารวมกัน แล้วใส่เครื่องหมายเดิม!<br><br>
+                <ul>
+                    <li>$3 + 5 = \mathbf{8}$ (มีเงิน 3 บาท ได้อีก 5 บาท = รวยขึ้น!)</li>
+                    <li>$-3 - 5 = \mathbf{-8}$ (เป็นหนี้ 3 บาท ไปยืมอีก 5 บาท = เป็นหนี้ก้อนใหญ่ขึ้น 8 บาท!)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="unit-card">
+            <div class="card-icon">⚔️</div>
+            <h3>7. คนละพวก "หักล้างกัน"</h3>
+            <div class="summary-text">
+                ถ้า <strong>เครื่องหมายต่างกัน</strong> (ตัวนึงบวก ตัวนึงลบ) ให้เอาเลขมา "ลบกัน" แล้วดูว่าฝั่งไหนมีพลังเยอะกว่า!<br><br>
+                <ul>
+                    <li>$-3 + 5 = \mathbf{2}$ (มีหนี้ 3 บาท แต่มีเงินตั้ง 5 บาท จ่ายหนี้แล้วยังเหลือเงิน 2 บาท)</li>
+                    <li>$-5 + 1 = \mathbf{-4}$ (มีหนี้ตั้ง 5 บาท แต่มีเงินมาจ่ายแค่ 1 บาท เลยยังเหลือหนี้อีก 4 บาท)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="unit-card full-width" style="background-color: #2d3436; border-color: #fdcb6e; color: #fff;">
+            <div class="card-icon" style="background: #000; border-color: #fdcb6e;">🚀</div>
+            <h3 style="background: #000; border-color: #fdcb6e; color: #fdcb6e;">8. อาวุธหนัก (เครื่องหมายพิเศษ)</h3>
+            <div class="summary-text" style="color: #eee;">
+                นอกจากบวกลบคูณหาร ยังมีพวกหน้าตาแปลกๆ ที่ยศใหญ่กว่า:
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 10px;">
+                    <div style="background: rgba(253,203,110,0.1); padding: 10px; border: 1px dashed #fdcb6e; border-radius: 8px;">
+                        <strong style="color: #fdcb6e;">เลขยกกำลัง ($x^n$)</strong><br>
+                        คือการเอาตัวมันเองมาคูณกันซ้ำๆ เช่น $3^2 = 3 \times 3 = 9$
+                    </div>
+                    <div style="background: rgba(253,203,110,0.1); padding: 10px; border: 1px dashed #fdcb6e; border-radius: 8px;">
+                        <strong style="color: #fdcb6e;">กรณฑ์ / รูท ($\sqrt{x}$)</strong><br>
+                        หาว่าเลขอะไรคูณตัวเองแล้วได้ตัวข้างใน เช่น $\sqrt{25} = 5$
+                    </div>
+                    <div style="background: rgba(253,203,110,0.1); padding: 10px; border: 1px dashed #fdcb6e; border-radius: 8px;">
+                        <strong style="color: #fdcb6e;">แฟกทอเรียล ($n!$)</strong><br>
+                        คูณถอยหลังไปจนถึง 1 เช่น $4! = 4 \times 3 \times 2 \times 1 = 24$
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="unit-card highlight-card">
+            <div class="card-icon">🔍</div>
+            <h3>9. สแกนหา "พจน์" (Terms)</h3>
+            <div class="summary-text">
+                เคล็ดลับมองโจทย์ยาวๆ ให้เป็นชิ้นเล็กๆ: ให้มอง <strong>เครื่องหมาย $+$ และ $-$ เป็น "กำแพง"</strong> ส่วนเครื่องหมาย $\times$ และ $\div$ เป็นกาวเชื่อมติดกัน!<br><br>
+                <em>เช่น $3 \times 2 \times x + 3 \times 5$</em><br>
+                มีเครื่องหมาย + กั้นอยู่ตรงกลาง แสดงว่าถูกแบ่งออกเป็น <strong>2 พจน์</strong> (คือก้อน $6x$ และก้อน $15$)
+            </div>
+        </div>
+
+        <div class="unit-card">
+            <div class="card-icon">🛡️</div>
+            <h3>10. เกราะป้องกัน (ค่าสัมบูรณ์)</h3>
+            <div class="summary-text">
+                ค่าสัมบูรณ์ หน้าตาเป็นขีดตั้งๆ แบบนี้ <strong>$|x|$</strong> มันมีหน้าที่วัด "ระยะทาง" จากเลข 0 <br><br>
+                <strong>กฎเหล็ก:</strong> อะไรที่หลุดออกมาจากค่าสัมบูรณ์ <strong>"ต้องเป็นบวกเสมอ!"</strong><br>
+                <ul>
+                    <li>$|5| = \mathbf{5}$</li>
+                    <li>$|-8| = \mathbf{8}$ (ถึงติดลบเข้าไป ก็โดนซักฟอกออกมาเป็นบวก!)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="unit-card full-width">
+            <div class="card-icon">🍔</div>
+            <h3>11. บอสเศษส่วน (วงเล็บล่องหน)</h3>
+            <div class="summary-text">
+                เห็นขีดเศษส่วนยาวๆ ไหม? ความลับคือ <strong>"มันซ่อนวงเล็บเอาไว้ทั้งข้างบนและข้างล่าง"</strong> ห้ามเอาเลขข้ามชั้นมาตัดกันมั่วๆ!<br><br>
+                <div style="background: #f1f2f6; padding: 15px; border-radius: 8px; border: 2px dashed #a4b0be; text-align: center; font-size: 1.1em;">
+                    โจทย์: $\frac{10 + 2}{5 - 1}$ $\rightarrow$ ความหมายที่แท้จริงคือ <strong>$(10 + 2) \div (5 - 1)$</strong>
+                </div>
+                <br>
+                <strong>วิธีทำที่ถูกต้อง:</strong> ต้องเคลียร์ข้างบนให้เสร็จ $(12)$ เคลียร์ข้างล่างให้เสร็จ $(4)$ แล้วค่อยเอามาหารกัน $\rightarrow 12 \div 4 = \mathbf{3}$
+            </div>
+        </div>
+
+        <div class="unit-card plus-card">
+            <div class="card-icon">⚠️</div>
+            <h3>12. กับดักซ้ายไปขวา (จุดตายที่ 1)</h3>
+            <div class="summary-text">
+                ข้อสอบหลอกคนทั้งประเทศ! <strong>$8 \div 2 \times 4 = ?$</strong><br><br>
+                ❌ <strong>คนโดนหลอก:</strong> ท่องว่า "คูณก่อนหาร" เลยเอา $2 \times 4 = 8$ แล้วเอา $8 \div 8 = 1$ (ผิดเต็มประตู!)<br>
+                ✅ <strong>แฮกเกอร์ตัวจริง:</strong> รู้ว่าคูณกับหารยศเท่ากัน ต้องทำจากซ้ายไปขวา!<br>
+                $\rightarrow$ เอา $8 \div 2 = 4$ ก่อน<br>
+                $\rightarrow$ ค่อยเอา $4 \times 4 = \mathbf{16}$ (ถูกต้อง!)
+            </div>
+        </div>
+
+        <div class="unit-card minus-card full-width">
+            <div class="card-icon">💣</div>
+            <h3>13. ระเบิดเวลาเลขยกกำลัง (จุดตายที่ 2)</h3>
+            <div class="summary-text">
+                ดูให้ดีว่าวงเล็บอยู่ตรงไหน สองตัวนี้หน้าตาคล้ายกัน แต่ผลลัพธ์คนละโลก!<br><br>
+                <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+                    <div style="flex: 1; min-width: 250px; background: #fff; padding: 15px; border: 2px solid #e17055; border-radius: 8px;">
+                        <strong style="color: #e17055; font-size: 1.2em;">$(-3)^2$ (มีวงเล็บ)</strong><br>
+                        แปลว่าตัวติดลบโดนยกกำลังไปด้วย!<br>
+                        $(-3) \times (-3)$ <br>
+                        ลบเจอลบเป็นบวก $\rightarrow \mathbf{+9}$
+                    </div>
+                    <div style="flex: 1; min-width: 250px; background: #fff; padding: 15px; border: 2px solid #0984e3; border-radius: 8px;">
+                        <strong style="color: #0984e3; font-size: 1.2em;">$-3^2$ (ไม่มีวงเล็บ)</strong><br>
+                        เครื่องหมายลบอยู่ข้างนอก ไม่เกี่ยวข้องกัน!<br>
+                        $-(3 \times 3)$ <br>
+                        ลบรออยู่เฉยๆ $\rightarrow \mathbf{-9}$
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div> 
+    </div>
+</body>
+</html>
