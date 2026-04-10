@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สรุปไฟฟ้า - Neobrutalism Style</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=K2D:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <script>
+      window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* --- 💥 NEOBRUTALISM THEME CONFIG 💥 --- */
+        :root {
+            --bg-color: #f0f0f0; /* พื้นหลังเทาอ่อนดิบๆ */
+            --sheet-bg: #ffffff;
+            --card-bg-1: #ffffff;
+            --card-bg-2: #a8edea; /* เขียวมินท์ดิบ */
+            --card-bg-highlight: #ffeaa7; /* เหลืองจัดจ้าน */
+            --text-main: #000000;
+            --text-sub: #333333;
+            
+            /* สไตล์หลัก: ขอบดำหนา + เงาแข็ง */
+            --border-thick: 3px solid #000000;
+            --border-thin: 2px solid #000000;
+            --shadow-hard: 8px 8px 0px #000000;
+            --shadow-small: 4px 4px 0px #000000;
+        }
+
+        body {
+            font-family: 'K2D', sans-serif;
+            margin: 0;
+            padding: 30px 15px;
+            color: var(--text-main);
+            background-color: var(--bg-color);
+            min-height: 100vh;
+        }
+
+        /* --- Main Container (แผ่นสรุป) --- */
+        .study-sheet {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: var(--sheet-bg);
+            /* Neobrutalism Style */
+            border: var(--border-thick);
+            border-radius: 15px;
+            box-shadow: 12px 12px 0px #000000;
+        }
+
+        /* Header section */
+        .sheet-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: var(--border-thick);
+        }
+        .sheet-header h2 {
+            margin: 0 0 15px 0;
+            font-size: 2.8em;
+            font-weight: 900; /* หนาสุดๆ */
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            -webkit-text-stroke: 1px #000; /* เพิ่มขอบตัวอักษร */
+        }
+        .sheet-header p {
+            color: var(--text-sub);
+            font-size: 1.2em;
+            font-weight: 700;
+            background-color: var(--card-bg-highlight);
+            display: inline-block;
+            padding: 8px 25px;
+            border: var(--border-thin);
+            border-radius: 10px;
+            box-shadow: var(--shadow-small);
+        }
+
+        /* Content Grid */
+        .sheet-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        /* --- Neobrutalism Cards --- */
+        .unit-card {
+            background-color: var(--card-bg-1);
+            border: var(--border-thick);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: var(--shadow-hard);
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+            display: flex;
+            flex-direction: column;
+            cursor: default;
+        }
+        /* เอฟเฟกต์ตอน Hover ให้ดูมีมิติแบบดิบๆ */
+        .unit-card:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 11px 11px 0px #000000;
+        }
+
+        /* Icon styling */
+        .card-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-align: center;
+            background: #fff;
+            border: var(--border-thin);
+            display: inline-block;
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            border-radius: 50%;
+            margin-left: auto; margin-right: auto;
+            box-shadow: var(--shadow-small);
+        }
+
+        .unit-card h3 {
+            text-align: center;
+            color: var(--text-main);
+            margin: 0 0 20px 0;
+            font-size: 1.6em;
+            font-weight: 900;
+            background: rgba(0,0,0,0.05);
+            padding: 10px;
+            border: var(--border-thin);
+            border-radius: 8px;
+        }
+
+        /* Highlight Card (เหลืองจัด) */
+        .highlight-card {
+            background-color: var(--card-bg-highlight);
+        }
+        .highlight-card h3 { background: #fff; color: #d35400; }
+        
+        /* สลับสีการ์ดให้น่าสนใจ */
+        .unit-card:nth-child(even):not(.highlight-card) {
+            background-color: var(--card-bg-2);
+        }
+
+        /* Typography & List */
+        .summary-text {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: var(--text-main);
+        }
+        .summary-text strong { font-weight: 900; }
+
+        .unit-card ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 15px 0;
+        }
+        .unit-card ul li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        /* Custom Bullet Points (สี่เหลี่ยมดำดิบๆ) */
+        .unit-card ul li::before {
+            content: "";
+            width: 12px;
+            height: 12px;
+            background-color: #000;
+            position: absolute;
+            left: 0;
+            top: 8px;
+            border: 2px solid #fff;
+            box-shadow: 2px 2px 0 #000;
+        }
+
+        /* 🖼️ Image Styling (ขอบหนา+เงาแข็ง) */
+        .study-sheet img {
+            display: block;
+            max-width: 95%;
+            height: auto;
+            margin: 20px auto;
+            border: var(--border-thick);
+            border-radius: 10px;
+            box-shadow: var(--shadow-small);
+            background-color: #fff;
+            padding: 5px;
+        }
+
+        /* Formula Box within text */
+        .var-desc {
+            font-size: 1em;
+            color: var(--text-sub);
+            margin-top: 10px;
+            padding: 15px;
+            background: #fff;
+            border: var(--border-thin);
+            border-radius: 8px;
+            box-shadow: inset 3px 3px 0 rgba(0,0,0,0.1); /* เงาบุ๋มลงไป */
+        }
+
+        /* Formula เด่นๆ */
+        .main-formula {
+            background-color: #a8edea;
+            border: var(--border-thick);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 15px 0;
+            box-shadow: var(--shadow-small);
+        }
+        .main-formula h3 {
+            margin: 0;
+            font-size: 2.2em;
+            background: none;
+            border: none;
+            -webkit-text-stroke: 1.5px #000;
+            color: #fff;
+        }
+
+        /* ปรับแต่ง MathJax ให้หนาเข้าตีม */
+        .mjx-chtml {
+            font-size: 1.1em !important;
+            font-weight: 700 !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .study-sheet { padding: 20px; border-radius: 10px; }
+            .sheet-header h2 { font-size: 2em; }
+            .sheet-content { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="study-sheet">
+    <div class="sheet-header">
+        <h2>⚡ฟลักซ์ไฟฟ้า (Electric Flux)</h2>
+        <p>พื้นฐานการคำนวณที่ต้องแม่น! นิยาม สูตร และทิศทาง</p>
+    </div>
+
+    <div class="sheet-content">
+        
+        <div class="unit-card">
+            <div class="card-icon">💡</div>
+            <h3>0. Concept</h3>
+            <div class="summary-text">
+                <strong>นิยาม:</strong> ปริมาณที่บอกว่ามี <strong>"เส้นแรงไฟฟ้า"</strong> พุ่งทะลุผ่าน <strong>"พื้นที่"</strong> มากน้อยแค่ไหน
+                <br><br>
+                เปรียบเหมือน <strong>"น้ำฝน" (สนามไฟฟ้า $\vec{E}$)</strong> ที่สาดเข้า <strong>"หน้าต่าง" (พื้นที่ $\vec{A}$)</strong>
+                <ul>
+                    <li>ฝนตกหนัก ($E$ มาก) $\rightarrow$ น้ำเข้าเยอะ</li>
+                    <li>หน้าต่างบานใหญ่ ($A$ มาก) $\rightarrow$ น้ำเข้าเยอะ</li>
+                    <li>เปิดหน้าต่างรับตรงๆ ($\theta = 0^\circ$) $\rightarrow$ น้ำเข้าเต็มที่!</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="unit-card highlight-card">
+            <div class="card-icon">📐</div>
+            <h3>1. สูตรหลัก (The Formula)</h3>
+            <div class="summary-text">
+                <img src="https://raw.githubusercontent.com/Nixcentury/examate-quiz/main/university/physic%20engneering%202%20%23%201/week%202/Screenshot%202026-02-07%20124145.png" alt="สมการฟลักซ์ไฟฟ้าและเวกเตอร์พื้นที่">
+                <br>
+                <div class="main-formula">
+                    <h3>$\Phi_E = EA \cos \theta$</h3>
+                </div>
+                <div class="var-desc">
+                    • <strong>$\Phi_E$</strong> = ฟลักซ์ไฟฟ้า (N·m²/C)<br>
+                    • <strong>$E$</strong> = ขนาดสนามไฟฟ้า (N/C)<br>
+                    • <strong>$A$</strong> = พื้นที่ผิว (m²)<br>
+                    • <strong>$\theta$</strong> = มุมระหว่าง $\vec{E}$ กับ <u>เส้นแนวฉาก</u> (Normal)
+                </div>
+                <p style="font-size: 1em; color: #d35400; margin-top: 15px; font-weight: 700; background: #fff; padding: 10px; border: 2px solid #d35400; border-radius: 8px;">
+                    ⚠️ <strong>ระวัง!</strong> ถ้าโจทย์ให้มุมกับ "ระนาบผิว" ต้องเอา $90^\circ$ ลบออกก่อน!
+                </p>
+            </div>
+        </div>
+
+        <div class="unit-card">
+            <div class="card-icon">👁️</div>
+            <h3>2. เช็กมุม $\theta$ (จุดตาย)</h3>
+            <div class="summary-text">
+                <ul>
+                    <li><strong>ตั้งฉากผิว ($\theta = 0^\circ$):</strong> ฟลักซ์สูงสุด ($\Phi = EA$)</li>
+                    <li><strong>ขนานผิว ($\theta = 90^\circ$):</strong> ฟลักซ์เป็นศูนย์ ($\Phi = 0$)</li>
+                    <li><strong>ทำมุมเฉียง:</strong> ต้องใช้ $\cos \theta$ แตกแรงเข้าหาเส้นปกติเสมอ</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="unit-card">
+            <div class="card-icon">➕➖</div>
+            <h3>3. เครื่องหมายทิศทาง</h3>
+            <div class="summary-text">
+                พิจารณา <strong>"ผิวปิด"</strong> (เช่น กล่อง):
+                <ul style="margin-top: 15px;">
+                    <li style="color: #c0392b; background: #fff; padding: 5px 10px; border: 2px solid #c0392b; border-radius: 5px;"><strong>ฟลักซ์ลบ (-):</strong> เส้นแรงพุ่ง <strong>"เข้า"</strong> ผิว</li>
+                    <li style="color: #27ae60; background: #fff; padding: 5px 10px; border: 2px solid #27ae60; border-radius: 5px; margin-top: 10px;"><strong>ฟลักซ์บวก (+):</strong> เส้นแรงพุ่ง <strong>"ออก"</strong> จากผิว</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
